@@ -6,8 +6,6 @@ import { addItem, editItem } from '../app/todolist/todoSlice';
 const TodoForm = (props) => {
     const {task,setTask,toggle,setToggle,ids} = props;
     const todos = useSelector(state => state.counter);
-    // console.log('===========..........>',ids)
-    // const [task, setTask] = useState('');
     const dispatch = useDispatch();
 
     const handleSubmit = async(e) => {

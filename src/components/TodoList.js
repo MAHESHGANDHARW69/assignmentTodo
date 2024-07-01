@@ -10,11 +10,8 @@ const TodoList = (props) => {
     const {task,setTask,setToggle,setIds} = props;
     const dispatch = useDispatch();
     const todos = useSelector(state => state.counter.todos);
-    console.log(todos)
-
-    useEffect(() => {
-        // dispatch(fetchTodos());
-    }, [dispatch]);
+    const user = useSelector(state => state?.counter?.user);
+    // console.log(user)
 
     function editTask(valItem){
         setTask(valItem?.task)
@@ -32,9 +29,6 @@ const TodoList = (props) => {
     return (
         <div className="task-list">
             <h1>Todo List</h1>
-            {/* {todos.map(todo => (
-                <TodoItem key={todo._id} todo={todo}  />
-            ))} */}
             <Table responsive="sm">
                 <thead>
                     <tr>
@@ -47,20 +41,22 @@ const TodoList = (props) => {
                 </thead>
                 <tbody>
                 {Array.isArray(todos) && todos?.map((todo,i)=>{
-                    return(
-                        <tr>
-                            <td>{i+1}</td>
-                            <td>{todo.completed?'complete':"incomplete"}</td>
-                            <td style={{ textDecoration: todo.completed ? 'line-through' : 'none' }}>{todo.task}</td>
-                            <td>
-                            <button onClick={()=>handleToggle(todo.id)}>Toggle</button>
-                            </td>
-                            <td>
-                            <button onClick={()=>editTask(todo)}>Edit</button>
-                            <button onClick={()=>handleRemoveItem(todo.id)} >Delete</button>                                
-                            </td>
-                        </tr>                        
-                    )
+                    if(todo.username === user?.username){
+                        return(
+                            <tr>
+                                <td>{i+1}</td>
+                                <td>{todo.completed?'complete':"incomplete"}</td>
+                                <td style={{ textDecoration: todo.completed ? 'line-through' : 'none' }}>{todo.task}</td>
+                                <td>
+                                <button onClick={()=>handleToggle(todo.id)}>Toggle</button>
+                                </td>
+                                <td>
+                                <button onClick={()=>editTask(todo)}>Edit</button>
+                                <button onClick={()=>handleRemoveItem(todo.id)} >Delete</button>                                
+                                </td>
+                            </tr>                        
+                        )
+                    }                    
                 })}                    
                 </tbody>
             </Table>

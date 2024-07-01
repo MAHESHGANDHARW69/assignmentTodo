@@ -12,10 +12,8 @@ function App() {
   const [task, setTask] = useState('');
   const [toggle,setToggle] = useState(false);
   const [ids,setIds] = useState();
-  let usedata = useSelector(state=>state.counter.user)
-  const [user,setUser] = useState(usedata)
+  let user = useSelector(state=>state.counter.user)
   const dispatch = useDispatch()
-  console.log(!user.username)
   return (
     <div className="App">
       {
