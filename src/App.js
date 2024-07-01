@@ -22,7 +22,7 @@ function App() {
         <>
         <h1>Advanced To-Do App</h1>
         <TodoForm task={task} setTask={setTask} toggle={toggle} setToggle={setToggle} ids={ids} /> 
-        <button onClick={()=>dispatch(loginUser({}))}>logout</button>
+        <button onClick={()=>dispatch(loginUser({}))}>Exit</button>
         <TodoList task={task} setTask={setTask} setToggle={setToggle} setIds={setIds} />
         </>
       }

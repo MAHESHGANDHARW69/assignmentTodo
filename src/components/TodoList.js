@@ -32,10 +32,9 @@ const TodoList = (props) => {
             <Table responsive="sm">
                 <thead>
                     <tr>
-                        <th>sno</th>
                         <th>Status</th>
                         <th>Task</th>
-                        <th>Toggle</th>
+                        {/* <th>Toggle</th> */}
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -43,14 +42,14 @@ const TodoList = (props) => {
                 {Array.isArray(todos) && todos?.map((todo,i)=>{
                     if(todo.username === user?.username){
                         return(
-                            <tr>
-                                <td>{i+1}</td>
+                            <tr>                                
                                 <td>{todo.completed?'complete':"incomplete"}</td>
                                 <td style={{ textDecoration: todo.completed ? 'line-through' : 'none' }}>{todo.task}</td>
+                                {/* <td>
+                                <button onClick={()=>handleToggle(todo.id)}>Toggle</button>
+                                </td> */}
                                 <td>
                                 <button onClick={()=>handleToggle(todo.id)}>Toggle</button>
-                                </td>
-                                <td>
                                 <button onClick={()=>editTask(todo)}>Edit</button>
                                 <button onClick={()=>handleRemoveItem(todo.id)} >Delete</button>                                
                                 </td>
