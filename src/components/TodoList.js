@@ -1,13 +1,13 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import TodoItem from './TodoItem';
+// import TodoItem from './TodoItem';
 import { removeItem, toggleTodo } from '../app/todolist/todoSlice';
 import Table from 'react-bootstrap/Table';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 const TodoList = (props) => {
-    const {task,setTask,setToggle,setIds} = props;
+    const {setTask,setToggle,setIds} = props;
     const dispatch = useDispatch();
     const todos = useSelector(state => state.counter.todos);
     const user = useSelector(state => state?.counter?.user);
@@ -33,8 +33,7 @@ const TodoList = (props) => {
                 <thead>
                     <tr>
                         <th>Status</th>
-                        <th>Task</th>
-                        {/* <th>Toggle</th> */}
+                        <th>Task</th>                        
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -42,12 +41,9 @@ const TodoList = (props) => {
                 {Array.isArray(todos) && todos?.map((todo,i)=>{
                     if(todo.username === user?.username){
                         return(
-                            <tr>                                
+                            <tr key={i}>                                
                                 <td>{todo.completed?'complete':"incomplete"}</td>
                                 <td style={{ textDecoration: todo.completed ? 'line-through' : 'none' }}>{todo.task}</td>
-                                {/* <td>
-                                <button onClick={()=>handleToggle(todo.id)}>Toggle</button>
-                                </td> */}
                                 <td>
                                 <button onClick={()=>handleToggle(todo.id)}>Toggle</button>
                                 <button onClick={()=>editTask(todo)}>Edit</button>
@@ -58,17 +54,7 @@ const TodoList = (props) => {
                     }                    
                 })}                    
                 </tbody>
-            </Table>
-            {/* {Array.isArray(todos) && todos?.map((todo,i)=>{
-                return (
-                    <div className="task-item" key={i}>
-                        <span style={{ textDecoration: todo.completed ? 'line-through' : 'none' }}>{todo.task}</span>
-                        <button onClick={()=>handleToggle(todo.id)}>Toggle</button>
-                        <button onClick={()=>editTask(todo)}>Edit</button>
-                        <button onClick={()=>handleRemoveItem(todo.id)} >Delete</button>
-                    </div>
-                )
-            })} */}
+            </Table>            
         </div>
     );
 };
